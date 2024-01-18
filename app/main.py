@@ -5,7 +5,7 @@ app = FastAPI()
 visa_data = {
     "X1234": {
         "registerNumber": "2211023Z227227",
-        "namaLengkap": "EZECHIEL ORTEGA",
+        "namaLengkap": "SASA SARAH",
         "visaNo": "23211A000700",
         "Status": "Visa has been issued"
     },
