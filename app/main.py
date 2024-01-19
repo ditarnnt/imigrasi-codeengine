@@ -1,10 +1,9 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 
 app = FastAPI()
 
-@app.get("/get_status/{status}")
-async def main(params):
 
+async def status_error(params):
     if "name" not in params:
         return {"statusCode": 400, "body": {"error": "no name is provided"}}
     if "document_id" not in params:
@@ -56,3 +55,50 @@ async def main(params):
               "recommended_action": "Please try again later or contact customer support for assistance."
         }
     return {"body": data.get(params["error_problem"], default_error), "message": "success", "document_id": params["document_id"]}
+
+
+
+
+async def passport_tracking (map_item):
+    visa_data = {
+            "X1234": {
+                "registerNumber": "2211023Z227227",
+                "namaLengkap": "EZECHIEL ORTEGA",
+                "visaNo": "23211A000700",
+                "status": "Visa has been issued"
+            },
+            "X5678": {
+                "registerNumber": "2211023Z2272322",
+                "namaLengkap": "Ana Smiths",
+                "visaNo": "23211A000700",
+                "status": "Visa has been under process at Embassy of Indonesia"
+            },
+            "X": {
+                "registerNumber": "-",
+                "namaLengkap": "-",
+                "visaNo": "-",
+                "status": "Invalid Parameter"
+            }
+        }
+    return visa_data[map_item]
+
+
+@app.post("/get_status_new")
+async def process_status_new(request: Request):
+    try:
+        param = await request.json()
+        output = await status_error(param)
+        return output
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+
+@app.post("/visa_tracking")
+async def process_visa_track(request: Request):
+    try:
+        param = await request.json()
+        map_item = param['passport_number']
+        output = await status_error(map_item)
+        return output
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
