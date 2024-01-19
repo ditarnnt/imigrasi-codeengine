@@ -98,7 +98,7 @@ async def process_visa_track(request: Request):
     try:
         param = await request.json()
         map_item = param['passport_number']
-        output = await status_error(map_item)
+        output = await passport_tracking(map_item)
         return output
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
