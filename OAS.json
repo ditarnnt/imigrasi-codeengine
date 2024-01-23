@@ -1,0 +1,144 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Molina Data API",
+      "version": "0.1.1",
+      "x-logo": {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://imigrasiv3.1c876fwdn5im.jp-tok.codeengine.appdomain.cloud",
+        "description": "Molina Status"
+      }
+    ],
+    "paths": {
+      "/get_status_new": {
+        "post": {
+          "description": "Post error type and receive detailed information",
+          "summary": "Analyze and respond to error types",
+          "operationId": "post_error_problem_type",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "error_problem": {
+                      "type": "string"
+                    },
+                    "document_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": ["name", "error_problem", "document_id"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "error_type": {
+                            "type": "string"
+                          },
+                          "error_message": {
+                            "type": "string"
+                          },
+                          "recommended_action": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "document_id": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/visa_tracking": {
+        "post": {
+          "description": "Track visa application by passport number",
+          "summary": "Visa Tracking",
+          "operationId": "visa_tracking",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "passport_number": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["passport_number"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Visa Tracking Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "registerNumber": {
+                        "type": "string",
+                        "example": "2211023Z227227"
+                      },
+                      "namaLengkap": {
+                        "type": "string",
+                        "example": "EZECHIEL ORTEGA"
+                      },
+                      "visaNo": {
+                        "type": "string",
+                        "example": "23211A000700"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "Visa has been issued"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      }
+    }
+  }
+  
