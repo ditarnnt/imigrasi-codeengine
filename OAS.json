@@ -9,7 +9,7 @@
     },
     "servers": [
       {
-        "url": "https://imigrasiv3.1c876fwdn5im.jp-tok.codeengine.appdomain.cloud",
+        "url": "http://162.133.112.43:8443",
         "description": "Molina Status"
       }
     ],
