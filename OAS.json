@@ -9,7 +9,7 @@
     },
     "servers": [
       {
-        "url": "http://162.133.112.43:8443",
+        "url": "https://imigrasi-track-visa.1e6ffxd76pvf.jp-tok.codeengine.appdomain.cloud",
         "description": "Molina Status"
       }
     ],
